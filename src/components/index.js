@@ -1,4 +1,5 @@
-import { NavbarVue } from "./header";
+import { Navbar } from "./header";
 import { Footer } from "./footer";
+import { Cart } from "./main";
 
-export { NavbarVue, Footer };
+export { Navbar, Footer, Cart };

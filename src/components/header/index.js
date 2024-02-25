@@ -1,3 +1,3 @@
-import NavbarVue from "./Navbar.vue";
+import Navbar from "./Navbar.vue";
 
-export { NavbarVue };
+export { Navbar };
