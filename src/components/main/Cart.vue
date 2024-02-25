@@ -1,5 +1,5 @@
 <template>
-    <li class="car">
+    <li class="car" @click="() => handleCartClick(car.id)">
         <div class="car-img__box">
             <img class="car-img" :src="car.img" :alt="car.name" />
         </div>
@@ -22,10 +22,18 @@
 
 <script setup>
 import { defineProps } from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 defineProps({
     car: Object,
 });
+
+const handleCartClick = (id) => {
+    console.log("log");
+    router.push(`/about/${id}`);
+};
 </script>
 
 <style scoped>
@@ -39,6 +47,7 @@ defineProps({
     background-color: #f26419;
     border-radius: 5px;
     padding: 0 15px;
+    cursor: pointer;
 }
 
 .car-img__box {

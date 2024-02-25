@@ -1,19 +1,17 @@
 <template>
     <div>
-        <Navbar />
         <div class="container main">
             <h1 class="hero-title">Cars Market</h1>
             <ul class="cart-list">
                 <Cart v-for="car in cars" :key="car.id" :car="car" />
             </ul>
         </div>
-        <Footer />
     </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import { Navbar, Footer, Cart } from "../components";
+import { Cart } from "../components";
 import { carList } from "@/../data";
 
 const cars = ref(carList);

@@ -52,7 +52,7 @@ body {
     padding: 0 50px;
 }
 
-.main {
+.main-content {
     flex-grow: 1;
     background-color: #11cc80;
     padding-bottom: 100px;
