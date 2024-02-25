@@ -2,12 +2,14 @@
     <header class="header">
         <div class="header-box container">
             <div class="header-img-box">
-                <a href="/"><img src="/logo.png" alt="logo" /></a>
+                <router-link to="/"
+                    ><img src="/logo.png" alt="logo"
+                /></router-link>
             </div>
             <ul class="header-list">
                 <li class="header-item">
-                    <a
-                        href="/basket"
+                    <router-link
+                        to="/basket"
                         class="header-link"
                         style="color: #1d1e2c"
                     >
@@ -15,7 +17,7 @@
                             class="fa-solid fa-cart-plus"
                             style="color: #11cc80"
                         />
-                        Basket</a
+                        Basket</router-link
                     >
                 </li>
             </ul>
