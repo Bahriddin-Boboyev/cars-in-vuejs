@@ -1,13 +1,7 @@
 <template>
-    <div>
-        Basket
-    </div>
+    <div class="container basket">Basket</div>
 </template>
 
-<script setup>
+<script setup></script>
 
-</script>
-
-<style  scoped>
-
-</style>
+<style scoped></style>
