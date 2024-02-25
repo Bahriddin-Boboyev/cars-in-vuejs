@@ -29,5 +29,12 @@ const cars = ref(carList);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
+    place-content: center;
+}
+
+@media screen and (max-width: 560px) {
+    .cart-list {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 400px));
+    }
 }
 </style>
