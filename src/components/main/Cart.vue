@@ -1,5 +1,5 @@
 <template>
-    <li class="car" @click="() => handleCartClick(car.id)">
+    <li class="car" @click="(e) => handleCartClick(e, car.id)">
         <div class="car-img__box">
             <img class="car-img" :src="car.img" :alt="car.name" />
         </div>
@@ -30,8 +30,10 @@ defineProps({
     car: Object,
 });
 
-const handleCartClick = (id) => {
-    console.log("log");
+const handleCartClick = (event, id) => {
+    if (event.target.className === "btn btn-primary") {
+        return;
+    }
     router.push(`/about/${id}`);
 };
 </script>
