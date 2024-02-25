@@ -8,7 +8,7 @@
             <div class="car-disc__box">
                 <p>Description:</p>
                 <span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    {{ car.description }}
                 </span>
             </div>
             <div class="car-price__box">
@@ -79,6 +79,7 @@ defineProps({
 
 .car-disc__box p {
     font-weight: 600;
+    margin-bottom: 7px;
 }
 
 .car-price__box {

@@ -6,7 +6,17 @@
             </div>
             <ul class="header-list">
                 <li class="header-item">
-                    <a href="/about" class="header-link">About</a>
+                    <a
+                        href="/basket"
+                        class="header-link"
+                        style="color: #1d1e2c"
+                    >
+                        <i
+                            class="fa-solid fa-cart-plus"
+                            style="color: #11cc80"
+                        />
+                        Basket</a
+                    >
                 </li>
             </ul>
         </div>
