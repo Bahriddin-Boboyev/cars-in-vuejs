@@ -17,6 +17,7 @@
                             class="fa-solid fa-cart-plus"
                             style="color: #11cc80"
                         />
+                        <span class="basket-count">0</span>
                         Basket</router-link
                     >
                 </li>
@@ -49,6 +50,22 @@
     height: 40px;
 }
 .header-link {
+    position: relative;
     color: black;
+}
+
+.basket-count {
+    position: absolute;
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    font-size: 13px;
+    background-color: red;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
+    top: -7px;
+    left: -10px;
 }
 </style>
