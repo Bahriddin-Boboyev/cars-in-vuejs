@@ -1,5 +1,5 @@
 <template>
-    <div class="container about">
+    <div class="container about" v-if="card">
         <div class="about-box">
             <div class="about-box__inner">
                 <div class="about-img">
@@ -17,6 +17,11 @@
                 </div>
             </div>
             <button class="btn about-btn">Buy now</button>
+        </div>
+    </div>
+    <div class="container" v-else>
+        <div class="about-not-found">
+            <h4>Oops. No car found with id {{ route.params.id }} :(</h4>
         </div>
     </div>
 </template>
@@ -96,6 +101,22 @@ const card = computed(() => carList.find((item) => item.id == route.params.id));
     display: block;
     margin: 0 auto;
 }
+
+/* NOT FOUND */
+
+.about-not-found {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.about-not-found h4 {
+    color: #fff;
+    font-size: 25px;
+}
+
+/* -----------------  */
 
 @media screen and (max-width: 700px) {
     .about-box__inner {

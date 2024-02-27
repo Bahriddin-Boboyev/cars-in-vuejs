@@ -17,11 +17,11 @@
                 <div class="basket-actions">
                     <div class="basket-btn-group">
                         <button class="basket-btn btn">
-                            <i class="fa-solid fa-plus"></i>
+                            <i class="fa-solid fa-minus"></i>
                         </button>
                         <span class="basket-count">0</span>
                         <button class="basket-btn btn">
-                            <i class="fa-solid fa-minus"></i>
+                            <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
                     <span class="basket-price">$9999</span>
@@ -43,11 +43,11 @@
                 <div class="basket-actions">
                     <div class="basket-btn-group">
                         <button class="basket-btn btn">
-                            <i class="fa-solid fa-plus"></i>
+                            <i class="fa-solid fa-minus"></i>
                         </button>
                         <span class="basket-count">0</span>
                         <button class="basket-btn btn">
-                            <i class="fa-solid fa-minus"></i>
+                            <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
                     <span class="basket-price">$9999</span>
