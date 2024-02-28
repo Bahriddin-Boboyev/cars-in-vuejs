@@ -17,7 +17,9 @@
                             class="fa-solid fa-cart-plus"
                             style="color: #11cc80"
                         />
-                        <span class="basket-count">0</span>
+                        <span class="basket-count">{{
+                            cars?.length ? calcBasketCount(cars) : 0
+                        }}</span>
                         Basket</router-link
                     >
                 </li>
@@ -26,7 +28,18 @@
     </header>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref, watchEffect } from "vue";
+import { calcBasketCount } from "@/utils";
+import { useStore } from "vuex";
+
+const store = useStore();
+const cars = ref(store.state.cars);
+
+watchEffect(() => {
+    cars.value = store.state.cars;
+});
+</script>
 
 <style scoped>
 .header {
@@ -37,6 +50,7 @@
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 10;
 }
 
 .header-box {

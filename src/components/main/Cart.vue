@@ -13,18 +13,22 @@
             </div>
             <div class="car-price__box">
                 <p class="car-price">Price:</p>
-                <span>{{ car.price }}</span>
+                <span>${{ car.price }}</span>
             </div>
         </div>
-        <button class="btn btn-primary">Buy now</button>
+        <button class="btn btn-primary" @click="() => handleStore(car)">
+            Buy now
+        </button>
     </li>
 </template>
 
 <script setup>
 import { defineProps } from "vue";
 import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 
 const router = useRouter();
+const store = useStore();
 
 defineProps({
     car: Object,
@@ -35,6 +39,18 @@ const handleCartClick = (event, id) => {
         return;
     }
     router.push(`/about/${id}`);
+};
+
+const setStoreCar = (car) => {
+    store.commit("setCars", car);
+};
+
+const handleStore = (car) => {
+    const cars = store.state.cars;
+
+    if (!cars) return;
+
+    setStoreCar(car);
 };
 </script>
 

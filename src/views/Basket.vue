@@ -1,16 +1,15 @@
 <template>
     <div class="container basket">
-        <ul class="basket-list">
-            <li class="basket-item">
+        <ul class="basket-list" v-if="cars && cars.length">
+            <li class="basket-item" v-for="car in cars" :key="car.id">
                 <div class="basket-content-box">
                     <div class="basket-img">
-                        <img src="/car-icon-1.png" alt="" />
+                        <img :src="car.img" :alt="car.name" />
                     </div>
                     <div class="basket-content">
-                        <h3 class="basket-title">Nardini</h3>
+                        <h3 class="basket-title">{{ car.name }}</h3>
                         <p class="basket-desc">
-                            Its main features include smooth handling, advanced
-                            safety systems, and high-quality design.
+                            {{ car.description }}
                         </p>
                     </div>
                 </div>
@@ -19,53 +18,44 @@
                         <button class="basket-btn btn">
                             <i class="fa-solid fa-minus"></i>
                         </button>
-                        <span class="basket-count">0</span>
+                        <span class="basket-count">{{ car.count }}</span>
                         <button class="basket-btn btn">
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
-                    <span class="basket-price">$9999</span>
-                </div>
-            </li>
-            <li class="basket-item">
-                <div class="basket-content-box">
-                    <div class="basket-img">
-                        <img src="/car-icon-1.png" alt="" />
-                    </div>
-                    <div class="basket-content">
-                        <h3 class="basket-title">Nardini</h3>
-                        <p class="basket-desc">
-                            Its main features include smooth handling, advanced
-                            safety systems, and high-quality design.
-                        </p>
-                    </div>
-                </div>
-                <div class="basket-actions">
-                    <div class="basket-btn-group">
-                        <button class="basket-btn btn">
-                            <i class="fa-solid fa-minus"></i>
-                        </button>
-                        <span class="basket-count">0</span>
-                        <button class="basket-btn btn">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                    </div>
-                    <span class="basket-price">$9999</span>
+                    <span class="basket-price"
+                        >${{ car.count * car.price }}</span
+                    >
                 </div>
             </li>
         </ul>
+        <div class="basket-not-found" v-else>
+            <h3>Basket is empty :(</h3>
+        </div>
     </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { reactive, watchEffect } from "vue";
+import { useStore } from "vuex";
+
+const store = useStore();
+let cars = reactive(store.state.cars);
+
+watchEffect(() => {
+    cars = store.state.cars;
+});
+
+</script>
 
 <style scoped>
 .basket {
-    height: 500px;
+    min-height: 500px;
     background: chocolate;
     margin-top: 100px;
     border-radius: 10px;
     padding: 20px;
+    position: relative;
 }
 .basket-list {
     padding: 20px;
@@ -139,5 +129,19 @@
     color: #fff;
     font-weight: 600;
     font-size: 18px;
+}
+
+/* NOT FOUND */
+
+.basket-not-found {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.basket-not-found h3 {
+    color: #fff;
+    font-size: 25px;
 }
 </style>

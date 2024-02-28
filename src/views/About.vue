@@ -12,7 +12,7 @@
                     </p>
 
                     <p class="about-price">
-                        Price: <span>{{ card.price }}</span>
+                        Price: <span>${{ card.price }}</span>
                     </p>
                 </div>
             </div>
