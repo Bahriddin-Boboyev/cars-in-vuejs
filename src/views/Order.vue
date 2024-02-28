@@ -1,7 +1,7 @@
 <template>
     <div class="container order">
         <div class="order-box">
-            <video width="320" height="240" autoplay loop muted>
+            <video class="order-video" autoplay loop muted>
                 <source src="/dealivrey-animation.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
@@ -24,12 +24,19 @@
     padding-top: 150px;
 }
 .order-video {
-    width: 200px;
+    max-width: 320px;
     height: auto;
     margin-bottom: 10px;
+    width: 100%;
 }
 .order-title {
     font-size: 23px;
     color: #fff;
+}
+
+@media screen and (max-width: 400px) {
+    .order-title {
+        font-size: 17px;
+    }
 }
 </style>

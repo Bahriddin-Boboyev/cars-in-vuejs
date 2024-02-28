@@ -72,3 +72,9 @@ body {
 .btn:hover {
     transform: translateY(-7px);
 }
+
+@media screen and (max-width: 400px) {
+    .container {
+        padding: 0 15px;
+    }
+}

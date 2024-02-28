@@ -1,61 +1,65 @@
 <template>
-    <div class="container basket">
-        <ul class="basket-list" v-if="cars && cars.length">
-            <li class="basket-item" v-for="car in cars" :key="car.id">
-                <div class="basket-content-box">
-                    <div class="basket-img">
-                        <img :src="car.img" :alt="car.name" />
+    <div class="container">
+        <div class="basket-box">
+            <ul class="basket-list" v-if="cars && cars.length">
+                <li class="basket-item" v-for="car in cars" :key="car.id">
+                    <div class="basket-content-box">
+                        <div class="basket-img">
+                            <img :src="car.img" :alt="car.name" />
+                        </div>
+                        <div class="basket-content">
+                            <h3 class="basket-title">{{ car.name }}</h3>
+                            <p class="basket-desc">
+                                {{ car.description }}
+                            </p>
+                        </div>
                     </div>
-                    <div class="basket-content">
-                        <h3 class="basket-title">{{ car.name }}</h3>
-                        <p class="basket-desc">
-                            {{ car.description }}
-                        </p>
-                    </div>
-                </div>
-                <div class="basket-actions">
-                    <div class="basket-btn-group">
-                        <button
-                            class="basket-btn btn"
-                            @click="
-                                () =>
-                                    handleStoreCar({
-                                        type: MINUS,
-                                        value: car,
-                                    })
-                            "
+                    <div class="basket-actions">
+                        <div class="basket-btn-group">
+                            <button
+                                class="basket-btn btn"
+                                @click="
+                                    () =>
+                                        handleStoreCar({
+                                            type: MINUS,
+                                            value: car,
+                                        })
+                                "
+                            >
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                            <span class="basket-count">{{ car.count }}</span>
+                            <button
+                                class="basket-btn btn"
+                                @click="
+                                    () =>
+                                        handleStoreCar({
+                                            type: PLUS,
+                                            value: car,
+                                        })
+                                "
+                            >
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                        <span class="basket-price"
+                            >${{ car.count * car.price }}</span
                         >
-                            <i class="fa-solid fa-minus"></i>
-                        </button>
-                        <span class="basket-count">{{ car.count }}</span>
-                        <button
-                            class="basket-btn btn"
-                            @click="
-                                () =>
-                                    handleStoreCar({
-                                        type: PLUS,
-                                        value: car,
-                                    })
-                            "
-                        >
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
                     </div>
-                    <span class="basket-price"
-                        >${{ car.count * car.price }}</span
-                    >
-                </div>
-            </li>
-        </ul>
-        <div v-if="cars && cars.length" class="down-group">
-            <h3 class="total-price">
-                Total Price: ${{ calcTotalPrice(cars) }}
-            </h3>
-            <button class="btn order" @click="handleOrder">Order now</button>
-        </div>
+                </li>
+            </ul>
+            <div v-if="cars && cars.length" class="down-group">
+                <h3 class="total-price">
+                    Total Price: ${{ calcTotalPrice(cars) }}
+                </h3>
+                <button class="btn order" @click="handleOrder">
+                    Order now
+                </button>
+            </div>
 
-        <div class="basket-not-found" v-else>
-            <h3>Basket is empty :(</h3>
+            <div class="basket-not-found" v-else>
+                <h3>Basket is empty :(</h3>
+            </div>
         </div>
     </div>
 </template>
@@ -92,12 +96,17 @@ const handleOrder = () => {
 
 <style scoped>
 .basket {
+    padding: 0;
+}
+.basket-box {
     min-height: 500px;
     background: chocolate;
     margin-top: 100px;
     border-radius: 10px;
     padding: 20px;
     position: relative;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .down-group {
@@ -201,5 +210,63 @@ const handleOrder = () => {
 .basket-not-found h3 {
     color: #fff;
     font-size: 25px;
+}
+
+/* MEDIA */
+
+@media screen and (max-width: 900px) {
+    .basket-item {
+        flex-direction: column;
+    }
+    .basket-img {
+        width: 180px;
+        margin-bottom: 15px;
+    }
+    .basket-desc {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+
+    .basket-content-box {
+        text-align: center;
+        flex-direction: column;
+        margin-bottom: 25px;
+    }
+
+    .basket-actions {
+        width: 50%;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .basket-actions {
+        width: 90%;
+    }
+    .down-group {
+        justify-content: space-around;
+    }
+}
+@media screen and (max-width: 500px) {
+    .basket-desc {
+        max-width: 100%;
+    }
+    .basket-not-found h3 {
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 410px) {
+    .basket-btn {
+        padding: 3px 10px;
+    }
+
+    .total-price {
+        font-size: 16px;
+    }
+
+    .order {
+        font-size: 16px;
+        padding: 3px 10px;
+    }
 }
 </style>
