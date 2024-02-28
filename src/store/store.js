@@ -3,7 +3,7 @@ import { createStore } from "vuex";
 export const store = createStore({
     state() {
         return {
-            cars: JSON.parse(localStorage.getItem("cars")) || [],
+            cars: JSON.parse(localStorage.getItem("cars") || "[]"),
         };
     },
     mutations: {
@@ -31,7 +31,7 @@ export const store = createStore({
             const index = state.cars.findIndex((item) => item.id === car.id);
             state.cars[index].count = ++state.cars[index].count;
 
-            localStorage.setItem("cars", state.cars);
+            localStorage.setItem("cars", JSON.stringify(state.cars));
         },
         minusCar: (state, car) => {
             const index = state.cars.findIndex((item) => item.id === car.id);
@@ -39,11 +39,11 @@ export const store = createStore({
             if (state.cars[index].count <= 1) {
                 state.cars = state.cars.filter((item) => item.id !== car.id);
 
-                return localStorage.setItem("cars", state.cars);
+                return localStorage.setItem("cars", JSON.stringify(state.cars));
             }
 
             state.cars[index].count = --state.cars[index].count;
-            localStorage.setItem("cars", state.cars);
+            localStorage.setItem("cars", JSON.stringify(state.cars));
         },
     },
     actions: {},

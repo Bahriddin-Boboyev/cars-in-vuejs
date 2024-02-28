@@ -31,7 +31,11 @@
                         <button
                             class="basket-btn btn"
                             @click="
-                                () => handleStoreCar({ type: PLUS, value: car })
+                                () =>
+                                    handleStoreCar({
+                                        type: PLUS,
+                                        value: car,
+                                    })
                             "
                         >
                             <i class="fa-solid fa-plus"></i>
@@ -43,6 +47,10 @@
                 </div>
             </li>
         </ul>
+        <h3 class="total-price" v-if="cars && cars.length">
+            Total Price: ${{ calcTotalPrice(cars) }}
+        </h3>
+
         <div class="basket-not-found" v-else>
             <h3>Basket is empty :(</h3>
         </div>
@@ -53,6 +61,7 @@
 import { ref, watchEffect } from "vue";
 import { useStore } from "vuex";
 import { MINUS, PLUS } from "@/constants";
+import { calcTotalPrice } from "@/utils";
 
 const store = useStore();
 let cars = ref(store.state.cars);
@@ -80,10 +89,15 @@ const handleStoreCar = ({ type, value }) => {
     padding: 20px;
     position: relative;
 }
+
+.total-price {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: #fff;
+}
 .basket-list {
-    padding: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
+    padding: 15px;
 }
 
 .basket-item {
@@ -91,10 +105,10 @@ const handleStoreCar = ({ type, value }) => {
     align-items: center;
     justify-content: space-between;
     column-gap: 100px;
-}
-
-.basket-item:not(:last-child) {
-    margin-bottom: 50px;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin-bottom: 30px;
 }
 
 .basket-content-box {
