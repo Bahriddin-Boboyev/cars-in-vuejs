@@ -51,6 +51,8 @@ watchEffect(() => {
     top: 0;
     left: 0;
     z-index: 10;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .header-box {
@@ -60,8 +62,8 @@ watchEffect(() => {
 }
 
 .header-img-box {
-    width: 40px;
-    height: 40px;
+    width: 100px;
+    height: auto;
 }
 .header-link {
     position: relative;
