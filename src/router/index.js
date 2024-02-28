@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { Home, About, Basket, NotFound } from "../views";
+import { Home, About, Basket, NotFound, Order } from "../views";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,6 +18,11 @@ const router = createRouter({
             path: "/basket",
             name: "Basket",
             component: Basket,
+        },
+        {
+            path: "/order",
+            name: "Order",
+            component: Order,
         },
         {
             path: "/:catchall(.*)*",

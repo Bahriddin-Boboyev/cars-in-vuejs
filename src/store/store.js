@@ -45,6 +45,11 @@ export const store = createStore({
             state.cars[index].count = --state.cars[index].count;
             localStorage.setItem("cars", JSON.stringify(state.cars));
         },
+
+        clearCar: (state) => {
+            state.cars = [];
+            localStorage.setItem("cars", JSON.stringify([]));
+        },
     },
     actions: {},
     getters: {},

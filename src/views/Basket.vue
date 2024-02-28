@@ -47,9 +47,12 @@
                 </div>
             </li>
         </ul>
-        <h3 class="total-price" v-if="cars && cars.length">
-            Total Price: ${{ calcTotalPrice(cars) }}
-        </h3>
+        <div v-if="cars && cars.length" class="down-group">
+            <h3 class="total-price">
+                Total Price: ${{ calcTotalPrice(cars) }}
+            </h3>
+            <button class="btn order" @click="handleOrder">Order now</button>
+        </div>
 
         <div class="basket-not-found" v-else>
             <h3>Basket is empty :(</h3>
@@ -60,11 +63,13 @@
 <script setup>
 import { ref, watchEffect } from "vue";
 import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 import { MINUS, PLUS } from "@/constants";
 import { calcTotalPrice } from "@/utils";
 
 const store = useStore();
-let cars = ref(store.state.cars);
+const router = useRouter();
+const cars = ref(store.state.cars);
 
 watchEffect(() => {
     cars.value = store.state.cars;
@@ -78,6 +83,11 @@ const handleStoreCar = ({ type, value }) => {
 
     store.commit("minusCar", value);
 };
+
+const handleOrder = () => {
+    store.commit("clearCar");
+    router.push("/order");
+};
 </script>
 
 <style scoped>
@@ -90,11 +100,22 @@ const handleStoreCar = ({ type, value }) => {
     position: relative;
 }
 
-.total-price {
+.down-group {
+    width: 96%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     position: absolute;
     bottom: 20px;
     left: 20px;
+}
+
+.total-price {
     color: #fff;
+}
+.order {
+    font-size: 17px;
+    font-weight: 600;
 }
 .basket-list {
     padding: 15px;
