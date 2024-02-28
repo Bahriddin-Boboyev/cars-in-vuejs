@@ -15,11 +15,25 @@
                 </div>
                 <div class="basket-actions">
                     <div class="basket-btn-group">
-                        <button class="basket-btn btn">
+                        <button
+                            class="basket-btn btn"
+                            @click="
+                                () =>
+                                    handleStoreCar({
+                                        type: MINUS,
+                                        value: car,
+                                    })
+                            "
+                        >
                             <i class="fa-solid fa-minus"></i>
                         </button>
                         <span class="basket-count">{{ car.count }}</span>
-                        <button class="basket-btn btn">
+                        <button
+                            class="basket-btn btn"
+                            @click="
+                                () => handleStoreCar({ type: PLUS, value: car })
+                            "
+                        >
                             <i class="fa-solid fa-plus"></i>
                         </button>
                     </div>
@@ -36,16 +50,25 @@
 </template>
 
 <script setup>
-import { reactive, watchEffect } from "vue";
+import { ref, watchEffect } from "vue";
 import { useStore } from "vuex";
+import { MINUS, PLUS } from "@/constants";
 
 const store = useStore();
-let cars = reactive(store.state.cars);
+let cars = ref(store.state.cars);
 
 watchEffect(() => {
-    cars = store.state.cars;
+    cars.value = store.state.cars;
 });
 
+const handleStoreCar = ({ type, value }) => {
+    if (type === PLUS) {
+        store.commit("plusCar", value);
+        return;
+    }
+
+    store.commit("minusCar", value);
+};
 </script>
 
 <style scoped>

@@ -27,6 +27,24 @@ export const store = createStore({
                 state.cars = newCars;
             }
         },
+        plusCar: (state, car) => {
+            const index = state.cars.findIndex((item) => item.id === car.id);
+            state.cars[index].count = ++state.cars[index].count;
+
+            localStorage.setItem("cars", state.cars);
+        },
+        minusCar: (state, car) => {
+            const index = state.cars.findIndex((item) => item.id === car.id);
+
+            if (state.cars[index].count <= 1) {
+                state.cars = state.cars.filter((item) => item.id !== car.id);
+
+                return localStorage.setItem("cars", state.cars);
+            }
+
+            state.cars[index].count = --state.cars[index].count;
+            localStorage.setItem("cars", state.cars);
+        },
     },
     actions: {},
     getters: {},

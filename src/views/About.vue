@@ -16,7 +16,9 @@
                     </p>
                 </div>
             </div>
-            <button class="btn about-btn">Buy now</button>
+            <button class="btn about-btn" @click="() => handleStore(card)">
+                Buy now
+            </button>
         </div>
     </div>
     <div class="container" v-else>
@@ -30,9 +32,23 @@
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { carList } from "@/../data";
+import { useStore } from "vuex";
 
 const route = useRoute();
+const store = useStore();
 const card = computed(() => carList.find((item) => item.id == route.params.id));
+
+const setStoreCar = (car) => {
+    store.commit("setCars", car);
+};
+
+const handleStore = (car) => {
+    const cars = store.state.cars;
+
+    if (!cars) return;
+
+    setStoreCar(car);
+};
 </script>
 
 <style scoped>
